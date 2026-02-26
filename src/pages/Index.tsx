@@ -41,7 +41,6 @@ const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [shockActive, setShockActive] = useState(false);
 
-  // Handle the intro screen timeout
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowIntro(false);
@@ -49,7 +48,6 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle the Electric Shock background effect on click
   const handleInteraction = () => {
     setShockActive(true);
     setTimeout(() => setShockActive(false), 150);
@@ -60,7 +58,6 @@ const Index = () => {
       className="relative min-h-screen bg-background overflow-x-hidden"
       onClick={handleInteraction}
     >
-      {/* Intro Animation Overlay */}
       <AnimatePresence>
         {showIntro && (
           <motion.div
@@ -81,15 +78,14 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      {/* Electric Shock Reactive Layer */}
       <AnimatePresence>
         {shockActive && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.8 }}
+            animate={{ opacity: 0.4 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
-            className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-[#ff2d2d]/10 to-transparent mix-blend-screen"
+            className="fixed inset-0 z-0 pointer-events-none bg-[#ff2d2d] mix-blend-screen"
           />
         )}
       </AnimatePresence>
@@ -143,7 +139,6 @@ const Index = () => {
       <ContactSection />
       <ScrollToTop />
 
-      {/* Built With Kathirvel R - Sticky Footer */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[50] pointer-events-none">
         <div className="bg-black/40 backdrop-blur-md border border-white/10 px-6 py-2 rounded-full shadow-[0_0_15px_rgba(255,45,45,0.2)]">
           <p className="text-[10px] md:text-xs font-syne tracking-[0.2em] text-white/70 uppercase">
