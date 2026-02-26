@@ -1,181 +1,38 @@
-import { Suspense, lazy } from "react";
-
 import Header from "@/components/Header";
-
-import HeroSection from "@/components/HeroSection";
-
-import AboutSection from "@/components/AboutSection";
-
+// Ensure this path matches your actual file structure to fix the build error
+import Hero from "@/components/Hero"; 
+import CarouselSection from "@/components/CarouselSection";
 import PassesSection from "@/components/PassesSection";
 
-import CarouselSection from "@/components/CarouselSection";
-
-import FoodSection from "@/components/FoodSection";
-
-import SponsorsSection from "@/components/SponsorsSection";
-
-import AboutMIT from "@/components/AboutMIT";
-
-import ContactSection from "@/components/ContactSection";
-
-import ScrollToTop from "@/components/ScrollToTop";
-
-import SectionDivider from "@/components/SectionDivider";
-
-import CursorGlow from "@/components/CursorGlow";
-
-
-
-const ParticlesBg = lazy(() => import("@/components/ParticlesBg"));
-
-
-
 const techEvents = [
-
-  { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=CC", title: "Code Craze", description: "Unleash your coding prowess in this high-intensity hackathon." },
-
-  { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=PC", title: "Prompt Clash", description: "Master the art of AI prompting to generate the best results." },
-
-  { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=IF", title: "Idea Forge", description: "Transform your innovative concepts into viable prototypes." },
-
-  { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=TG", title: "Techguess", description: "Test your technical vocabulary in this fast-paced guessing game." },
-
+  { 
+    title: "tech guess", 
+    description: "Test your technical knowledge in this fast-paced guessing game.", 
+    image: "/api/placeholder/400/320",
+    link: "https://intecho26.onrender.com/tech-guess" 
+  },
+  { 
+    title: "Code craze", 
+    description: "The ultimate competitive programming battle.", 
+    image: "/api/placeholder/400/320",
+    link: "https://intecho26.onrender.com/code-clash"
+  }
 ];
 
-
-
-const nonTechEvents = [
-
-  { image: "https://placehold.co/100/1a1a2e/6a5acd?text=US", title: "Uno Showdown", description: "Battle it out in this classic card game." },
-
-  { image: "https://placehold.co/100/1a1a2e/6a5acd?text=TT", title: "Twin Tactics", description: "Sync up and win in dual challenges." },
-
-  { image: "https://placehold.co/100/1a1a2e/6a5acd?text=QZ", title: "Quizzard", description: "Test your knowledge in this rapid-fire quiz." },
-
-  { image: "https://placehold.co/100/1a1a2e/6a5acd?text=TH", title: "Techhunt", description: "Solve clues and hunt for the treasure." },
-
-];
-
-
-
-const workshops = [
-
-  { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=S", title: "Siemens", description: "Industrial automation and control workshop." },
-
-  { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=Y", title: "Yokogawa", description: "Advanced instrumentation and DCS systems." },
-
-];
-
-
-
-const Index = () => {
-
+export default function Home() {
   return (
-
-    <div className="relative min-h-screen bg-background overflow-x-hidden">
-
-      <CursorGlow />
-
-      <Suspense fallback={null}>
-
-        <ParticlesBg />
-
-      </Suspense>
-
-
-
+    <main className="min-h-screen bg-background text-foreground">
       <Header />
-
-
-
-      <HeroSection />
-
-      <SectionDivider />
-
-      <AboutSection />
-
-      <SectionDivider />
-
+      <Hero />
       <PassesSection />
-
-      <SectionDivider />
-
-
-
-      <CarouselSection
-
+      
+      <CarouselSection 
         id="tech-events"
-
         title="Technical Events"
-
-        subtitle="Showcase your skills in various technical challenges"
-
+        subtitle="Push your limits with our flagship competitions"
         items={techEvents}
-
-        showRegister
-
+        showRegister={true}
       />
-
-      <SectionDivider />
-
-
-
-      <CarouselSection
-
-        id="nontech-events"
-
-        title="Non-Tech Events"
-
-        subtitle="Blend fun and tech in exciting challenges"
-
-        items={nonTechEvents}
-
-        showRegister
-
-      />
-
-      <SectionDivider />
-
-
-
-      <CarouselSection
-
-        id="workshops"
-
-        title="Workshops"
-
-        subtitle="Learn from industry experts"
-
-        items={workshops}
-
-        showRegister
-
-      />
-
-      <SectionDivider />
-
-      <FoodSection />
-
-      <SectionDivider />
-
-      <SponsorsSection />
-
-      <SectionDivider />
-
-      <AboutMIT />
-
-      <SectionDivider />
-
-      <ContactSection />
-
-      <ScrollToTop />
-
-    </div>
-
+    </main>
   );
-
-};
-
-
-
-export default Index; 
+}
