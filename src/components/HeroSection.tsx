@@ -23,7 +23,7 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        {/* 2. Cool Retro-Futuristic IEA Text */}
+        {/* 2. Unified IEA Text (Matched Size & Font) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,9 +31,9 @@ const HeroSection = () => {
           className="mb-4 text-center"
         >
           <h1 
-            className="text-7xl md:text-[9rem] font-black italic tracking-widest uppercase"
+            /* Changed to font-sans font-black and matched the exact size of INTECHO'26 */
+            className="text-6xl sm:text-7xl md:text-[8rem] font-sans font-black tracking-[0.1em] uppercase"
             style={{
-              /* Hollow text with a glowing red neon border */
               WebkitTextStroke: "3px #ff2d2d",
               color: "transparent",
               textShadow: "0 0 40px rgba(255,45,45,0.5)"
@@ -68,7 +68,7 @@ const HeroSection = () => {
           <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gradient-to-r from-transparent via-[#ff2d2d] to-transparent opacity-60"></div>
         </motion.div>
 
-        {/* 5. Massive Animated INTECHO'26 Text */}
+        {/* 5. Unified INTECHO'26 Text (Matched Size & Font) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -76,13 +76,13 @@ const HeroSection = () => {
           className="mb-10 mt-6 text-center"
         >
           <motion.h2
-            /* Continuous breathing & gradient shifting animation */
             animate={{ 
               scale: [1, 1.02, 1],
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="text-6xl sm:text-7xl md:text-[9rem] lg:text-[11rem] font-syne font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ff2d2d] to-white drop-shadow-[0_0_20px_rgba(255,45,45,0.3)]"
+            /* Changed to font-sans font-black and reduced size down to exactly match IEA */
+            className="text-6xl sm:text-7xl md:text-[8rem] font-sans font-black uppercase tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ff2d2d] to-white drop-shadow-[0_0_20px_rgba(255,45,45,0.3)]"
             style={{ backgroundSize: "200% auto" }}
           >
             INTECHO'26
