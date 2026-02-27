@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import MagneticButton from "./MagneticButton";
-import RotatingText from "./RotatingText";
 
 const HeroSection = () => {
   return (
@@ -25,23 +24,11 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center flex flex-col items-center"
+          className="text-center"
         >
-          {/* --- THE NEW ROTATING TEXT --- */}
-          <div className="h-[80px] md:h-[120px] flex items-center justify-center overflow-hidden">
-            <RotatingText
-              texts={["INTECHO'26", "COMMAND.", "CREATE.", "CONQUER."]}
-              mainClassName="text-6xl md:text-[8rem] font-syne font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 uppercase tracking-tighter"
-              staggerFrom="last"
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "-120%", opacity: 0 }}
-              staggerDuration={0.03}
-              transition={{ type: "spring", damping: 30, stiffness: 400 }}
-              rotationInterval={3500}
-            />
-          </div>
-          {/* ----------------------------- */}
+          <h1 className="text-6xl md:text-[8rem] font-syne font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 uppercase tracking-tighter">
+            INTECHO'26
+          </h1>
 
           <p className="font-heading text-[0.65rem] md:text-[0.85rem] uppercase tracking-[0.2em] md:tracking-[0.3em] text-gray-400 text-center mt-6">
             Instrumentation Engineers Association
