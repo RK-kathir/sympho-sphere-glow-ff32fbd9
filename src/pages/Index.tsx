@@ -15,21 +15,6 @@ import CursorGlow from "@/components/CursorGlow";
 
 const ParticlesBg = lazy(() => import("@/components/ParticlesBg"));
 
-// Optimized Flying Robot - reduced frequency for mobile performance
-const FlyingRobot = () => (
-  <motion.div
-    className="fixed pointer-events-none z-0 opacity-10 text-4xl will-change-transform"
-    style={{ transform: "translateZ(0)" }}
-    animate={{
-      x: ["-20vw", "120vw"],
-      y: ["25vh", "45vh", "25vh"],
-    }}
-    transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-  >
-    🤖
-  </motion.div>
-);
-
 const techEvents = [
   { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=PC", title: "prompt clash", description: "Command. Create. Conquer. Master the art of AI prompting.", link: "https://docs.google.com/forms/d/e/1FAIpQLScIrj3nBV9k6puhdWuBRbyx1gdRcxDcKS9kqJ4ofEN92B3ymQ/viewform?usp=publish-editor" },
   { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=CC", title: "code craze", description: "Unleash your coding prowess in this high-intensity hackathon.", link: "https://docs.google.com/forms/d/e/1FAIpQLSculCkJKPQp6PDi5ndc4YFgkTmi2D07FW-PFM12Lhs4xul85A/viewform?usp=dialog" },
@@ -54,10 +39,20 @@ const workshops = [
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowIntro(false), 3000);
-    return () => clearTimeout(timer);
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    
+    const timer = setTimeout(() => setShowIntro(false), 2500);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkDevice);
+    };
   }, []);
 
   return (
@@ -65,15 +60,13 @@ const Index = () => {
       <AnimatePresence>
         {showIntro && (
           <motion.div 
-            // Removed filter: blur for performance
-            exit={{ opacity: 0, scale: 0.95 }} 
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="fixed inset-0 z-[999] bg-black flex items-center justify-center"
+            exit={{ opacity: 0, scale: 1.1 }} 
+            className="fixed inset-0 z-[999] bg-black flex items-center justify-center overflow-hidden"
           >
             <motion.h1 
-              initial={{ letterSpacing: "-0.2em", opacity: 0 }}
-              animate={{ letterSpacing: "0.2em", opacity: 1 }}
-              transition={{ duration: 1.5 }}
+              initial={{ letterSpacing: "-0.5em", opacity: 0 }}
+              animate={{ letterSpacing: "0.3em", opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
               className="text-5xl md:text-8xl font-syne font-bold text-white uppercase text-center"
             >
               INTECHO'26
@@ -82,9 +75,19 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      <FlyingRobot />
       <CursorGlow />
-      <Suspense fallback={null}><ParticlesBg /></Suspense>
+
+      {/* Optimized Background: Simple pulse for Mobile, Particles for Desktop */}
+      {isMobile ? (
+        <div className="fixed inset-0 z-[-1] opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-blue-500/10 animate-pulse" />
+        </div>
+      ) : (
+        <Suspense fallback={null}>
+          <ParticlesBg />
+        </Suspense>
+      )}
+
       <Header />
       <HeroSection />
       <SectionDivider />
@@ -93,11 +96,11 @@ const Index = () => {
       <PassesSection />
       <SectionDivider />
 
-      <CarouselSection id="tech-events" title="Technical Events" subtitle="Command. Create. Conquer." items={techEvents} showRegister />
+      <CarouselSection id="tech-events" title="Technical Events" items={techEvents} showRegister />
       <SectionDivider />
-      <CarouselSection id="nontech-events" title="Non-Tech Events" subtitle="Blend fun and strategy" items={nonTechEvents} showRegister />
+      <CarouselSection id="nontech-events" title="Non-Tech Events" items={nonTechEvents} showRegister />
       <SectionDivider />
-      <CarouselSection id="workshops" title="Workshops" subtitle="Learn from industry experts" items={workshops} showRegister />
+      <CarouselSection id="workshops" title="Workshops" items={workshops} showRegister />
       
       <SectionDivider />
       <FoodSection />
@@ -108,6 +111,14 @@ const Index = () => {
       <SectionDivider />
       <ContactSection />
       <ScrollToTop />
+
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[50] pointer-events-none">
+        <div className="bg-black/40 backdrop-blur-md border border-white/10 px-6 py-2 rounded-full">
+          <p className="text-[10px] md:text-xs font-syne tracking-[0.2em] text-white/70 uppercase">
+            Built with <span className="text-[#ff2d2d] font-bold">Kathirvel R</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
