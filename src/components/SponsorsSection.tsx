@@ -1,47 +1,41 @@
 import { motion } from "framer-motion";
 
-const sponsorGroups = [
+const sponsors = [
   {
-    label: "Sponsors",
-    sponsors: ["logo placeholder"]
-  }
+    name: "Placka",
+    logo: "https://i.ibb.co/hFvnqD29/placka-removebg-preview.png",
+    alt: "placka removebg preview"
+  },
+  // If you get more sponsors in the future, just add them here like this:
+  // { name: "Another Sponsor", logo: "IMAGE_URL_HERE", alt: "Sponsor Name" }
 ];
 
 const SponsorsSection = () => {
   return (
-    <section id="sponsors" className="relative z-10 py-20 px-4 md:px-8 max-w-6xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="section-title">Our Sponsors</h2>
-        <p className="section-subtitle">Partners who make it all possible</p>
-      </motion.div>
+    <section id="sponsors" className="relative z-10 py-16 px-4 md:px-8 max-w-7xl mx-auto w-full">
+      <div className="mb-10">
+        <h2 className="section-title text-white">Our Sponsors</h2>
+        <p className="section-subtitle">Proudly supported by our industry partners</p>
+      </div>
 
-      {sponsorGroups.map((group, gi) => (
-        <div key={group.label} className="mt-10">
-          <h3 className="font-heading text-lg font-semibold text-foreground mb-4">{group.label}</h3>
-          <div className={`flex flex-wrap gap-4 ${group.wide ? "" : ""}`}>
-            {group.sponsors.map((s, si) => (
-              <motion.div
-                key={`${gi}-${si}`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: si * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className={`glass rounded-full px-8 py-4 flex items-center justify-center hover:glow-red-strong transition-shadow cursor-pointer ${
-                  group.wide ? "w-full md:w-96" : "w-44"
-                }`}
-              >
-                <span className="font-body text-muted-foreground text-sm">{s}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      ))}
+      <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 md:gap-12 mt-10">
+        {sponsors.map((sponsor, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="rounded-xl p-6 flex justify-center items-center bg-[#111] border border-white/10 hover:border-[#ff2d2d]/50 hover:shadow-[0_0_20px_rgba(255,45,45,0.2)] transition-all duration-300 w-48 h-32 md:w-56 md:h-36"
+          >
+            <img 
+              src={sponsor.logo} 
+              alt={sponsor.alt} 
+              className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+            />
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 };
