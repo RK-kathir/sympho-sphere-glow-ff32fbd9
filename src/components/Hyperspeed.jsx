@@ -4,8 +4,6 @@ import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect, SMAAPr
 import './Hyperspeed.css';
 
 const DEFAULT_EFFECT_OPTIONS = {
-  onSpeedUp: () => {},
-  onSlowDown: () => {},
   distortion: 'xyDistortion',
   length: 400,
   roadWidth: 9,
@@ -46,15 +44,17 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
   const appRef = useRef(null);
 
   useEffect(() => {
+    // FIX: Using the direct ref guarantees React finds the div container
+    const container = hyperspeed.current;
+    if (!container) return;
+
     if (appRef.current) {
       appRef.current.dispose();
-      const container = document.getElementById('lights');
-      if (container) {
-        while (container.firstChild) {
-          container.removeChild(container.firstChild);
-        }
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
       }
     }
+    
     const xyUniforms = {
       uFreq: { value: new THREE.Vector2(5, 2) },
       uAmp: { value: new THREE.Vector2(25, 15) }
@@ -97,7 +97,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
     };
 
     class App {
-      constructor(container, options = {}) {
+      constructor(domContainer, options = {}) {
         this.options = options;
         if (this.options.distortion == null) {
           this.options.distortion = {
@@ -105,14 +105,14 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
             getDistortion: distortion_vertex
           };
         }
-        this.container = container;
+        this.container = domContainer;
         this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
-        this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
+        this.renderer.setSize(domContainer.offsetWidth, domContainer.offsetHeight, false);
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.composer = new EffectComposer(this.renderer);
-        container.append(this.renderer.domElement);
+        domContainer.append(this.renderer.domElement);
 
-        this.camera = new THREE.PerspectiveCamera(options.fov, container.offsetWidth / container.offsetHeight, 0.1, 10000);
+        this.camera = new THREE.PerspectiveCamera(options.fov, domContainer.offsetWidth / domContainer.offsetHeight, 0.1, 10000);
         this.camera.position.z = -5;
         this.camera.position.y = 8;
         this.camera.position.x = 0;
@@ -533,18 +533,18 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
     }
 
     (function () {
-      const container = document.getElementById('lights');
       const options = { ...DEFAULT_EFFECT_OPTIONS, ...effectOptions, colors: { ...DEFAULT_EFFECT_OPTIONS.colors, ...effectOptions.colors } };
       options.distortion = distortions[options.distortion];
       const myApp = new App(container, options);
       appRef.current = myApp;
-      myApp.loadAssets().then(myApp.init);
+      myApp.loadAssets().then(() => myApp.init());
     })();
 
     return () => { if (appRef.current) appRef.current.dispose(); };
   }, [effectOptions]);
 
-  return <div id="lights" ref={hyperspeed}></div>;
+  // Make absolutely sure this is taking up 100% of the screen space so you can see it
+  return <div id="lights" ref={hyperspeed} style={{ width: '100%', height: '100vh', position: 'absolute' }}></div>;
 };
 
 export default Hyperspeed;
