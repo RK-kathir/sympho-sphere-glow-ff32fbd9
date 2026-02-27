@@ -21,7 +21,7 @@ const CarouselSection = ({ id, title, items, showRegister = false }) => {
         <h2 className="section-title text-white">{title}</h2>
       </div>
 
-      {/* Desktop Navigation Arrows */}
+      {/* Desktop Navigation Arrows (Hidden on Mobile) */}
       <div className="hidden md:flex absolute top-1/2 left-0 right-0 justify-between px-4 z-30 pointer-events-none -translate-y-1/2">
         <button onClick={() => scroll("left")} className="p-3 bg-[#111] border border-white/10 rounded-full pointer-events-auto hover:bg-primary transition-colors shadow-lg">
           <ChevronLeft className="w-6 h-6 text-white" />
@@ -31,25 +31,25 @@ const CarouselSection = ({ id, title, items, showRegister = false }) => {
         </button>
       </div>
 
-      {/* MOBILE SCROLL FIX:
-        Added 'flex-nowrap' and 'touch-pan-x' so it forces a single scrolling line.
-        Added custom scrollbar hiding styles directly to the style prop.
+      {/* MOBILE SCROLL CONTAINER: 
+        overflow-x-auto allows horizontal scrolling.
+        scrollbarWidth: none hides the ugly scrollbar.
       */}
       <div className="relative w-full">
         <div 
           ref={scrollRef} 
-          className="flex flex-nowrap gap-4 md:gap-6 overflow-x-auto pb-8 pt-4 snap-x snap-mandatory touch-pan-x"
+          className="flex overflow-x-auto gap-6 pb-8 pt-4 snap-x snap-mandatory scroll-smooth"
           style={{ 
             scrollbarWidth: "none", /* Firefox */
             msOverflowStyle: "none", /* IE/Edge */
-            WebkitOverflowScrolling: "touch" /* iOS Safari smooth scrolling */
+            WebkitOverflowScrolling: "touch" /* iOS Safari */
           }}
         >
           {items.map((item) => (
             <div 
               key={item.title} 
-              // 'w-[85vw]' ensures the card fits the phone screen while letting the edge of the next card peek out!
-              className="snap-center shrink-0 w-[85vw] max-w-[280px] md:w-72"
+              // shrink-0 prevents squishing. w-[80vw] makes it look great on phones
+              className="snap-center shrink-0 w-[80vw] max-w-[300px] md:w-72"
             >
               <div className="rounded-xl p-6 flex flex-col items-center gap-4 h-full border border-white/10 bg-[#111] shadow-xl hover:border-white/20 transition-colors">
                 <img 
@@ -74,11 +74,9 @@ const CarouselSection = ({ id, title, items, showRegister = false }) => {
         </div>
       </div>
 
-      {/* Global CSS to hide the scrollbar for webkit browsers as well */}
+      {/* Global CSS to hide webkit scrollbars */}
       <style dangerouslySetInnerHTML={{__html: `
-        .overflow-x-auto::-webkit-scrollbar {
-          display: none;
-        }
+        .overflow-x-auto::-webkit-scrollbar { display: none; }
       `}} />
 
       <EventModal 
