@@ -88,7 +88,6 @@ const nonTechEvents = [
   { image: "https://placehold.co/100/1a1a2e/6a5acd?text=CH", title: "chess", description: "Master the 64 squares in this strategic battle of minds.", link: "https://docs.google.com/forms/d/e/1FAIpQLScLYE1E8NL-0vxqAerutnmLjEUmOpKaHJq-Y-axViVPc8cylQ/viewform?usp=publish-editor" },
   { image: "https://placehold.co/100/1a1a2e/6a5acd?text=TT", title: "twin tactics", description: "Sync up and win in dual challenges.", link: "https://docs.google.com/forms/d/e/1FAIpQLSfIGsidDolEdkbgOP7QZxcO34awK-5WJj_U7OrPLCjWFoIUCg/viewform?usp=publish-editor" },
   { image: "https://placehold.co/100/1a1a2e/6a5acd?text=QZ", title: "quizzard", description: "Test your knowledge in this rapid-fire quiz.", link: "https://docs.google.com/forms/d/e/1FAIpQLSfLL6YvswrJTjl9_AywrXEjBsxpH5q_HjJfl9ibdlzZogS_Ww/viewform?usp=publish-editor" },
-  { image: "https://placehold.co/100/1a1a2e/6a5acd?text=LL", title: "locked and lost", description: "Find your way out in this thrilling escape challenge.", link: "https://docs.google.com/forms/d/e/1FAIpQLSfA1suzxHwYVEcXKvtM9PieacMfQIZremlPGxsgqT4WWoyY1Q/viewform?usp=publish-editor" },
 ];
 
 const workshops = [
