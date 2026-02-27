@@ -41,7 +41,7 @@ const HeroSection = () => {
         />
         
         <p className="font-heading text-[0.65rem] md:text-[0.85rem] uppercase tracking-[0.2em] md:tracking-[0.3em] text-muted-foreground text-center">
-          Instrumentation Engineering Association
+          Instrumentation Engineers Association
         </p>
         
         <p className="font-body italic text-[#ff2d2d] text-[0.85rem] md:text-[1rem] lowercase">
