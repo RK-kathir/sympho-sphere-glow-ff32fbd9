@@ -14,9 +14,6 @@ import SectionDivider from "@/components/SectionDivider";
 // @ts-ignore
 import Hyperspeed from "@/components/Hyperspeed";
 
-// ------------------------------------------------------------------
-// Hyperspeed options kept OUTSIDE the component to prevent canvas crashing
-// ------------------------------------------------------------------
 const hyperspeedOptions = {
   distortion: "xyDistortion",
   length: 400,
@@ -47,13 +44,12 @@ const hyperspeedOptions = {
     background: 0x050505,
     shoulderLines: 0x131318,
     brokenLines: 0x131318,
-    leftCars: [0xff2d2d, 0xa90519, 0xff102a], // Red lights
-    rightCars: [0x6a5acd, 0x483d8b, 0x7b68ee], // Purple lights
-    sticks: 0xff2d2d // Red light sticks
+    leftCars: [0xff2d2d, 0xa90519, 0xff102a], 
+    rightCars: [0x6a5acd, 0x483d8b, 0x7b68ee], 
+    sticks: 0xff2d2d 
   }
 };
 
-// MOBILE ONLY: Custom NO-LAG CSS Hyperspeed Lines
 const MobileFastLines = () => (
   <div className="absolute inset-0 flex justify-center w-full h-full">
     {Array.from({ length: 15 }).map((_, i) => (
@@ -81,19 +77,20 @@ const techEvents = [
   { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=PC", title: "prompt clash", description: "Command. Create. Conquer. Master the art of AI prompting.", link: "https://docs.google.com/forms/d/e/1FAIpQLScIrj3nBV9k6puhdWuBRbyx1gdRcxDcKS9kqJ4ofEN92B3ymQ/viewform?usp=publish-editor" },
   { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=CC", title: "code craze", description: "Unleash your coding prowess in this high-intensity hackathon.", link: "https://docs.google.com/forms/d/e/1FAIpQLSculCkJKPQp6PDi5ndc4YFgkTmi2D07FW-PFM12Lhs4xul85A/viewform?usp=dialog" },
   
-  // REPLACED Idea Forge with Quiz Arena here
+  // IDEA FORGE REPLACED WITH QUIZ ARENA
   { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=QA", title: "quiz arena", description: "Test your ultimate technical knowledge in this high-stakes battle of wits.", link: "https://docs.google.com/forms/d/e/1FAIpQLSd5sMB0xBXFKvKJE71ULzYI8q4dezO5U8BEcjtnoszT7HaM3g/viewform?usp=publish-editor" },
   
   { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=TG", title: "tech guess", description: "Test your technical vocabulary in this fast-paced guessing game.", link: "https://docs.google.com/forms/d/e/1FAIpQLSe4S3gbcyQJWmXNTBIqmNSd6RqfHOqIeTXnixgm-m7qQFuI5w/viewform?usp=publish-editor" },
   { image: "https://placehold.co/100/1a1a2e/ff2d2d?text=PP", title: "paper presentation", description: "Present your technical papers and innovative ideas.", link: "https://docs.google.com/forms/d/e/1FAIpQLSeLvZlgJaPGHpSBrGimyO0Jn2OCdZ5TFlnylSzClNvkNVHePQ/viewform?usp=publish-editor" },
 ];
 
+// LOCKED AND LOST REMOVED
 const nonTechEvents = [
   { image: "https://placehold.co/100/1a1a2e/6a5acd?text=TH", title: "treasure hunt", description: "Solve clues and hunt for the hidden treasure.", link: "https://docs.google.com/forms/d/e/1FAIpQLSeqs7HR1taI9vrmAHWeOp_zQoHlslMVb6vaArDA-9dx465J5g/viewform?usp=publish-editor" },
   { image: "https://placehold.co/100/1a1a2e/6a5acd?text=US", title: "uno showdown", description: "Battle it out in this classic card game.", link: "https://docs.google.com/forms/d/e/1FAIpQLSeV5mmCdF4Wu8yMbIjQNgk2f0dPI5W9yg8UfiAdTAcMrw6XbA/viewform?usp=dialog" },
   { image: "https://placehold.co/100/1a1a2e/6a5acd?text=CH", title: "chess", description: "Master the 64 squares in this strategic battle of minds.", link: "https://docs.google.com/forms/d/e/1FAIpQLScLYE1E8NL-0vxqAerutnmLjEUmOpKaHJq-Y-axViVPc8cylQ/viewform?usp=publish-editor" },
   { image: "https://placehold.co/100/1a1a2e/6a5acd?text=TT", title: "twin tactics", description: "Sync up and win in dual challenges.", link: "https://docs.google.com/forms/d/e/1FAIpQLSfIGsidDolEdkbgOP7QZxcO34awK-5WJj_U7OrPLCjWFoIUCg/viewform?usp=publish-editor" },
-  { image: "https://placehold.co/100/1a1a2e/6a5acd?text=QZ", title: "quizzard", description: "Test your knowledge in this rapid-fire quiz.", link: "https://docs.google.com/forms/d/e/1FAIpQLSfLL6YvswrJTjl9_AywrXEjBsxpH5q_HjJfl9ibdlzZogS_Ww/viewform?usp=publish-editor" },
+  { image: "https://placehold.co/100/1a1a2e/6a5acd?text=QZ", title: "quizzard", description: "Test your knowledge in this rapid-fire quiz.", link: "https://docs.google.com/forms/d/e/1FAIpQLSfLL6YvswrJTjl9_AywrXEjBsxpH5q_HjJfl9ibdlzZogS_Ww/viewform?usp=publish-editor" }
 ];
 
 const workshops = [
@@ -118,10 +115,8 @@ const Index = () => {
   }, []);
 
   return (
-    // Main container is transparent so it doesn't block the background
     <div className="relative min-h-screen bg-transparent overflow-x-hidden flex flex-col">
       
-      {/* ---------------- BACKGROUND RENDERER ---------------- */}
       <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-[#050505]">
         {isMobile ? (
           <MobileFastLines /> 
@@ -131,7 +126,6 @@ const Index = () => {
           </div>
         )}
       </div>
-      {/* --------------------------------------------------- */}
 
       <AnimatePresence>
         {showIntro && (
@@ -160,6 +154,8 @@ const Index = () => {
       <CarouselSection id="nontech-events" title="Non-Tech Events" items={nonTechEvents} showRegister={true} />
       <SectionDivider />
       <CarouselSection id="workshops" title="Workshops" items={workshops} showRegister={true} />
+      
+      {/* FOOD SECTION COMPLETELY REMOVED */}
       
       <SectionDivider />
       <SponsorsSection />
