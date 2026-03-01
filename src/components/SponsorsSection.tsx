@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
 
-// Import your exact logo files from the assets folder
-import siemensLogo from "@/assets/Siemens logo.png";
+// 1. Removed Siemens import
 import indianBankLogo from "@/assets/Indian bank logo.png";
 import indusAutoLogo from "@/assets/Indusauto logo.png";
 import pmaLogo from "@/assets/PMA logo.png";
 
+// 2. Removed Siemens from the array
 const sponsors = [
-  { name: "Siemens", logo: siemensLogo },
   { name: "Indian Bank", logo: indianBankLogo },
   { name: "IndusAuto", logo: indusAutoLogo },
   { name: "PMA", logo: pmaLogo },
@@ -30,8 +29,8 @@ const SponsorsSection = () => {
         <div className="w-24 h-1 bg-[#ff2d2d] mx-auto rounded-full" />
       </motion.div>
 
-      {/* Sponsors Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      {/* 3. Changed grid from 4 columns to 3 columns so the 3 cards perfectly fill the space! */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {sponsors.map((sponsor, index) => (
           <motion.div
             key={index}
@@ -39,10 +38,8 @@ const SponsorsSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            // Changed background slightly and kept the border
             className="relative group bg-white/5 border border-white/10 rounded-xl overflow-hidden h-48 md:h-56 flex items-center justify-center hover:border-[#ff2d2d]/50 transition-colors shadow-lg"
           >
-            {/* THE FIX: Changed 'object-cover' to 'object-contain' and added 'p-6' padding */}
             <img 
               src={sponsor.logo} 
               alt={sponsor.name} 
