@@ -44,7 +44,7 @@ const ContactSection = () => {
           
           <div className="flex flex-col gap-5">
             <a href="tel:6381655601" className="flex justify-between items-center text-gray-300 hover:text-[#ff2d2d] transition-colors group">
-              <span className="font-body text-base">Viswa R</span>
+              <span className="font-body text-base">Vishwa R</span>
               <div className="flex items-center gap-3 bg-black/50 px-4 py-2 rounded-full group-hover:scale-105 transition-transform">
                 <PhoneCall className="w-4 h-4" />
                 <span className="font-mono tracking-wider">6381655601</span>
